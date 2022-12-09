@@ -28,5 +28,10 @@ z_2 = imdct(y_2) #             [-0.5,  0.5,  4.5,  4.5]
 z = (z_1[2:4] + z_2[0:2]) # [2.0, 3.0]
 ```
 
+### Benchmarks
+
+See [benchmarks.ipynb](./benchmarks.ipynb)
+
+
 
 
