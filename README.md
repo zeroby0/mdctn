@@ -1,6 +1,6 @@
 # MDCTN :yarn:
 
-Multidimensional Modified Discrete Cosine Transforms
+Multidimensional [Modified Discrete Cosine Transforms](https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform)
 
 ```bash
 pip install mdctn

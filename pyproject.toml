@@ -5,7 +5,7 @@ description = "Multidimensional Modified Discrete Cosine Transforms"
 authors = ["Aravind Reddy Voggu <aravind.reddy@iiitb.org>"]
 maintainers = ["Aravind Reddy Voggu <aravind.reddy@iiitb.org>"]
 repository = "https://github.com/zeroby0/mdctn.git"
-keywords = ["Nexmon", "CSI", "Nexmon_CSI", "WiFi"]
+keywords = ["MDCT", "DCT", "FFT", "lapped", "signal-processing", "lapped-orthogonal-transform"]
 readme = "README.md"
 license = "MIT"
 
