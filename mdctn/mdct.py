@@ -11,6 +11,6 @@ def mdct(signal, N=16, dct_type=4, norm='ortho', orthogonalize=None):
     transformed = np.zeros(np_signal.shape)
 
     for i in np.r_[:x.shape[0] - N//2:N//2]:
-        transformed[i:i+N//2] = core.mdct(x[i:i+N])
+        transformed[i:i+N//2] = core.mdct(x[i:i+N], dct_type=dct_type, norm=norm, orthogonalize=orthogonalize)
 
     return transformed

@@ -6,9 +6,9 @@ def imdct(signal, N=16, dct_type=4, norm='ortho', orthogonalize=None):
 
     x = np.zeros(z.shape[0] + N//2)
 
-    x[0:N//2] = core.imdct(z[-N//2:])[-N//2:]
+    x[0:N//2] = core.imdct(z[-N//2:], dct_type=dct_type, norm=norm, orthogonalize=orthogonalize)[-N//2:]
 
     for i in np.r_[:z.shape[0]:N//2]:
-        x[i:i+N] += core.imdct(z[i:i+N//2])
+        x[i:i+N] += core.imdct(z[i:i+N//2], dct_type=dct_type, norm=norm, orthogonalize=orthogonalize)
 
     return np.hstack([x[N//4:-N//2], x[:N//4]])

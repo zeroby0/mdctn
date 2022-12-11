@@ -55,7 +55,11 @@ def imdct(y, dct_type=4, norm='ortho', orthogonalize=True):
     
     N4 = N // 4
 
-    z = idct(y, type=dct_type, norm=norm, orthogonalize=orthogonalize)
+    try:
+        z = idct(y, type=dct_type, norm=norm, orthogonalize=orthogonalize)
+    except TypeError:
+        # Scikit version < 1.8.0 doesn't have orthogonalize argument
+        z = idct(y, type=dct_type, norm=norm)
 
     z = np.hstack([z, -np.flip(z), -z])
 

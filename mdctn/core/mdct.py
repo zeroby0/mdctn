@@ -70,4 +70,8 @@ def mdct(x, dct_type=4, norm='ortho', orthogonalize=None):
     br = np.flip(b)
     cr = np.flip(c)
 
-    return dct(np.hstack([-cr - d, a - br]), type=dct_type, norm=norm, orthogonalize=orthogonalize) / 2
+    try:
+        return dct(np.hstack([-cr - d, a - br]), type=dct_type, norm=norm, orthogonalize=orthogonalize) / 2
+    except TypeError as e:
+        # Scikit version < 1.8.0 doesn't have orthogonalize argument
+        return dct(np.hstack([-cr - d, a - br]), type=dct_type, norm=norm) / 2
