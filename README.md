@@ -11,11 +11,12 @@ pip install mdctn
 - [ ] Windowing support
 - [x] Helper functions for signals
 
-Known bugs: Not all window sizes work: 12, 24, 28 don't work. Bug in arithmetic.
+
 
 ### 1-D MDCT on signals
 
-Signals are wrapped around so all the data is stored in the same number of bits.
+Signals are [wrapped around](https://github.com/zeroby0/mdctn/discussions/1)
+so all the data is stored in the same number of bits.
 
 ``` python
 import numpy as np
