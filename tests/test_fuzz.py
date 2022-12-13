@@ -1,6 +1,8 @@
 import numpy as np
-from mdctn import mdct, imdct
 from itertools import product
+
+from mdctn import mdct
+from mdctn import imdct
 
 def test_fuzz():
     for n in range(1, 20):
@@ -16,11 +18,11 @@ def test_fuzz():
             norm = prod[2]
             orthogonalize = prod[3]
 
-            print(nsamples, N, dct_type, norm, orthogonalize)
+            # print(nsamples, N, dct_type, norm, orthogonalize)
 
-            x = np.arange(nsamples)
+            x = np.random.randint(low=0, high=255, size=nsamples)
 
-            y = mdct(x, N=N, dct_type=dct_type, norm=norm, orthogonalize=orthogonalize)
-            z = imdct(y, N=N, dct_type=dct_type, norm=norm, orthogonalize=orthogonalize)
+            y = mdct(x, N=N, type=dct_type, norm=norm, orthogonalize=orthogonalize)
+            z = imdct(y, N=N, type=dct_type, norm=norm, orthogonalize=orthogonalize)
 
             assert np.allclose(x, z)
