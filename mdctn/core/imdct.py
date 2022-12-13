@@ -3,7 +3,7 @@ from scipy.fft import idct
 
 __all__ = ['imdct']
 
-def imdct(y, dct_type=4, norm='ortho', orthogonalize=True):
+def imdct(y, **kwargs):
     """
     Returns Inverse Modified Discrete Cosine Transform of a 1 dimensional signal
 
@@ -11,14 +11,15 @@ def imdct(y, dct_type=4, norm='ortho', orthogonalize=True):
     ----------
     y : array_like
         The input array
-    dct_type : {1, 2, 3, 4}, optional
+    type : {1, 2, 3, 4}, optional
         Type of the DCT. Default is 4.
     norm : {'backward', 'ortho', 'forward'}, optional
         Normalisation mode for DCT. Default is 'ortho'
     orthogonalize: bool, optional
         Whether to use the orthogonalized DCT variant
         Defaults to ``True`` when ``norm=="ortho"`` and ``False`` otherwise.
-    
+        New since SciPy version 1.8.0
+
     Returns
     -------
     z: ndarray of real
@@ -48,6 +49,7 @@ def imdct(y, dct_type=4, norm='ortho', orthogonalize=True):
     >>> y = mdct(x[0:4]) # [-2.50104055, -0.49476881]
     >>> z = imdct(y) # [-0.5,  0.5,  2.5,  2.5]
     """
+
     N = y.shape[0] * 2
 
     if N%4 != 0:
@@ -55,12 +57,6 @@ def imdct(y, dct_type=4, norm='ortho', orthogonalize=True):
     
     N4 = N // 4
 
-    try:
-        z = idct(y, type=dct_type, norm=norm, orthogonalize=orthogonalize)
-    except TypeError:
-        # Scikit version < 1.8.0 doesn't have orthogonalize argument
-        z = idct(y, type=dct_type, norm=norm)
+    z = idct(y, **kwargs)
 
-    z = np.hstack([z, -np.flip(z), -z])
-
-    return z[N4:5*N//4]
+    return np.hstack([z[N4:], -np.flip(z), -z[:N4]])

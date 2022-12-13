@@ -3,7 +3,7 @@ from scipy.fft import dct
 
 __all__ = ['mdct']
 
-def mdct(x, dct_type=4, norm='ortho', orthogonalize=None):
+def mdct(x, **kwargs):
     """
     Returns Modified Discrete Cosine Transform of a 1 dimensional signal
 
@@ -11,13 +11,14 @@ def mdct(x, dct_type=4, norm='ortho', orthogonalize=None):
     ----------
     x : array_like
         The input array
-    dct_type : {1, 2, 3, 4}, optional
+    type : {1, 2, 3, 4}, optional
         Type of the DCT. Default is 4.
     norm : {'backward', 'ortho', 'forward'}, optional
         Normalisation mode for DCT. Default is 'ortho'
     orthogonalize: bool, optional
         Whether to use the orthogonalized DCT variant
         Defaults to ``True`` when ``norm=="ortho"`` and ``False`` otherwise.
+        New since SciPy version 1.8.0
     
     Returns
     -------
@@ -48,10 +49,6 @@ def mdct(x, dct_type=4, norm='ortho', orthogonalize=None):
     >>> y = mdct(x[0:4]) # [-2.50104055, -0.49476881]
     >>> z = imdct(y) # [-0.5,  0.5,  2.5,  2.5]
     """
-
-    if orthogonalize is None:
-        orthogonalize = False
-        if norm == 'ortho': orthogonalize = True
     
     x = np.asarray(x)
 
@@ -70,8 +67,4 @@ def mdct(x, dct_type=4, norm='ortho', orthogonalize=None):
     br = np.flip(b)
     cr = np.flip(c)
 
-    try:
-        return dct(np.hstack([-cr - d, a - br]), type=dct_type, norm=norm, orthogonalize=orthogonalize) / 2
-    except TypeError as e:
-        # Scikit version < 1.8.0 doesn't have orthogonalize argument
-        return dct(np.hstack([-cr - d, a - br]), type=dct_type, norm=norm) / 2
+    return dct(np.hstack([-cr - d, a - br]), **kwargs) / 2
