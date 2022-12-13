@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.fft import dct
 
-def mdcto(x, N=16, **kwargs):
+def mdct(x, N=16, **kwargs):
     """
     Returns Modified Discrete Cosine Transform of a 1 dimensional signal
 

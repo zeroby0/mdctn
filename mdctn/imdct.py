@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.fft import idct
 
-def imdcto(y, N=16, **kwargs):
+def imdct(y, N=16, **kwargs):
     """
     Returns Inverse Modified Discrete Cosine Transform of a 1 dimensional signal
 
