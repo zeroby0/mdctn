@@ -27,7 +27,7 @@ def mdct(x, **kwargs):
     
     See Also
     --------
-    imdct : Inverse Modified DCT
+    core.imdct : Inverse Modified DCT
 
     Notes
     -----

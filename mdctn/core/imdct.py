@@ -27,7 +27,7 @@ def imdct(y, **kwargs):
     
     See Also
     --------
-    mdct : Modified DCT
+    core.mdct : Modified DCT
 
     Notes
     -----
