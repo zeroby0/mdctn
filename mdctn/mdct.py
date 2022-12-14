@@ -52,6 +52,13 @@ def mdct(x, N=16, **kwargs):
     """
     npx = np.asarray(x)
 
+    if np.issubdtype(npx.dtype, np.integer):
+        npx = npx.astype(np.int64)
+    elif np.issubdtype(npx.dtype, np.floating):
+        npx = npx.astype(np.float64)
+    else:
+        raise ValueError(f'Unsupported dtype {npx.dtype} for mdct input. Please use np.int64 or np.float64.')
+
     N2 = N//2
     N4 = N//4
 
